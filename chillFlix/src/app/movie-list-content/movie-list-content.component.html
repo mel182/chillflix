@@ -1,14 +1,12 @@
-<p class="content">
-  movie-list-content works!
-  <li *ngFor="let movie of movie_list$">
-      <a routerLink="/details/{{user.id}}">{{ user.name }}</a>
-  
-      <ul>
-        <li>{{ user.email }}</li>
-        <li><a href="http://{{ user.website }}">{{ user.website }}</a></li>
-      </ul>
-    </li>
+<h2>Movie list</h2>
 
-
-
-</p>
+<ul>
+  <li *ngFor="let movie of movies$">
+    <ul>
+      <li>{{ movie.id }}</li>
+      <li>{{ movie.title }}</li>
+      <li>{{ movie.description }}</li>
+      <li>{{ movie.movie_id }}</li>
+    </ul>
+  </li>
+</ul>

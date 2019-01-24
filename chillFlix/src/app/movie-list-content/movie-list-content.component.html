@@ -1,5 +1,14 @@
 <h2>Movie list</h2>
 
+<select [(ngModel)]="title">
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+    <option value="opel">Opel</option>
+    <option value="audi">Audi</option>
+  </select>
+
+
+
 <ul>
   <li *ngFor="let movie of movies$">
     <ul>
@@ -7,6 +16,18 @@
       <li>{{ movie.title }}</li>
       <li>{{ movie.description }}</li>
       <li>{{ movie.movie_id }}</li>
+      <!-- CALL A INPUT VALUE ON ANOTHER COMPONENT -->
+      <!-- <app-movie-list-content> [movie.id]="testValue" </app-movie-list-content> -->
+      <!-- <p>Server response: {{ testValue }}</p> -->
     </ul>
   </li>
 </ul>
+
+<input [(ngModel)]="title" type="text" placeholder="Enter movie title">
+<input [(ngModel)]="description" type="text" placeholder="Enter movie description">
+<input [(ngModel)]="movie_id" type="text" placeholder="Enter movie youtube id">
+<button (click)="addMovie()">Add Movie</button>
+<p>Post Response: {{ httpResponse }}</p>
+
+
+

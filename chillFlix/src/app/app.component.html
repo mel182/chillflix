@@ -1,53 +1,10 @@
-<!-- <mat-toolbar>
-    <span>My Application</span>
-</mat-toolbar> -->
-<!-- <app-main-nav-bar></app-main-nav-bar> -->
 
 <div id="container">
-  
-  <!-- Main navigation bar -->
-  <mat-sidenav-container>
-      <mat-sidenav  #sidenav role="navigation">
-          <mat-nav-list>
-          
-          <button mat-icon-button>
-              <mat-icon>search</mat-icon>
-          </button>
+    <app-navigation-bar></app-navigation-bar>
 
-           </mat-nav-list>
-         </mat-sidenav>
-
-      <mat-sidenav-content>
-        <mat-toolbar color="warn">
-         <div fxHide.gt-xs>
-           <button mat-icon-button>
-            <mat-icon>menu</mat-icon>
-          </button>
-        </div>
-         <div>
-           <a>
-              <mat-icon>movie</mat-icon>
-           </a>
-          <a>
-              Chillflix
-           </a>
-         </div>
-         <div fxFlex fxLayout fxLayoutAlign="flex-end"  fxHide.xs>
-            <ul fxLayout fxLayoutGap="20px" class="navigation-items">
-                <li>
-                    <button mat-icon-button>
-                        <mat-icon>search</mat-icon>
-                    </button>
-                </li>
-            </ul>
-         </div>
-        </mat-toolbar>
-        <main>
-            <router-outlet></router-outlet>
-        </main>
-      </mat-sidenav-content>
-    </mat-sidenav-container>
-  <!-- Main navigation bar -->
+    <div id="content">
+        <router-outlet></router-outlet>
+    </div>
 </div>
 
 

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MovieNameComponent } from './movie-name.component';
+import { NavigationBarComponent } from './navigation-bar.component';
 
-describe('MovieNameComponent', () => {
-  let component: MovieNameComponent;
-  let fixture: ComponentFixture<MovieNameComponent>;
+describe('NavigationBarComponent', () => {
+  let component: NavigationBarComponent;
+  let fixture: ComponentFixture<NavigationBarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MovieNameComponent ]
+      declarations: [ NavigationBarComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MovieNameComponent);
+    fixture = TestBed.createComponent(NavigationBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

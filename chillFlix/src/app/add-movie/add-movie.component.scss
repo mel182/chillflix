@@ -1,0 +1,54 @@
+form { 
+    margin: 0 auto; 
+    width:250px;
+    }
+
+input {
+    border: 2px solid lightgray;
+    padding: 10px;
+    border-radius: 15px;
+    margin: 5px;
+}
+
+select {
+    border: 2px solid lightgray;
+    padding: 10px;
+    border-radius: 15px;
+    margin: 5px;
+}
+
+h2 {
+    margin-top: 10px;
+}
+
+div.top {
+    margin-top: 10px;
+    display: block;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+div.main_container {
+    display: inline-block;
+}
+
+p.warning {
+    color: red;
+}
+p.title {
+    color: black;
+    font-weight: bold;
+    margin: 0 auto; 
+    width:250px;
+}
+
+p.title-inline {
+    display: inline-block;
+    margin-left: 5px;
+    font-size: 25px;
+}
+
+iframe {
+    margin-top: 20px;
+}
+

@@ -1,34 +1,38 @@
 
-    <form>
+    <form [formGroup]="movieForm" (ngSubmit) = "addMovie(movieForm.value)">
         <div class="top">  
           <i class="material-icons">movie</i>
           <p class="title-inline">Add new movie</p>
         </div>
         <div>
-            <input name="testName" [(ngModel)]="movie_title" type="text" placeholder="Enter title" [ngModelOptions]="{standalone: true}"/>
+            <input name="testName" formControlName="movie_title" type="text" placeholder="Enter title"/>
         </div>
         <div>
-            <input [(ngModel)]="movie_description" type="text" placeholder="Description" [ngModelOptions]="{standalone: true}"/>
+            <input formControlName="movie_description" type="text" placeholder="Description"/>
         </div>
         <div>
-            <input [(ngModel)]="movie_url" type="text" placeholder="YouTube URL" [ngModelOptions]="{standalone: true}"/>
+            <input formControlName="movie_url" type="text" placeholder="YouTube URL"/>
         </div>
         <div>
-          <mat-form-field>
+            <select formControlName="movie_genre">
+                <option *ngFor="let movie_genre of movie_genre_list$" value="genre" >
+                        {{movie_genre.genre}}
+                </option>
+            </select>
+          <!-- <mat-form-field>
               <mat-select placeholder="Genre">
                 <mat-option *ngFor="let movie_genre of movie_genre_list$" [value]="movie_genre.value" (click)="setGenre(movie_genre.genre)">
                   {{movie_genre.genre}}
                 </mat-option>
               </mat-select>
-            </mat-form-field> 
+            </mat-form-field>  -->
         </div>
         <div>
             <p class="warning">{{ indicator }}</p>
         </div>
         <div>
-            <button  (click)="addMovie()" type="button" class="btn btn-primary">Add</button>
+            <button  [disabled]="!movieForm.valid" type="submit" class="btn btn-primary">Add</button>
         </div>
-        
     </form>
 
 

@@ -5,16 +5,26 @@ import {MaterialModule} from './material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,MatFormFieldModule, MatSelectModule } from '@angular/material';
+// tslint:disable-next-line:max-line-length
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatFormFieldModule, MatSelectModule } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MovieListContentComponent} from './movie-list-content/movie-list-content.component';
 import {MovieDetailComponent} from './movie-detail/movie-detail.component';
 import {AddMovieComponent} from './add-movie/add-movie.component';
 import {EditMovieComponent} from './edit-movie/edit-movie.component';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms'
-import { NavigationBarComponent } from './navigation-bar/navigation-bar.component'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { LoginComponentComponent } from './login-component/login-component.component';
+import { AuthGuardService } from './auth/auth-guard/auth-guard.service';
+import { JwtHelperService, JwtModule} from '@auth0/angular-jwt';
+import { JwtInterceptorService } from './auth/interceptor/jwt-interceptor.service';
+
+export function tokenGetter() {
+  return '1425sd251x2zx12';
+  // return localStorage.getItem('access_token');
+}
 
 @NgModule({
   declarations: [
@@ -23,7 +33,8 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     MovieDetailComponent,
     AddMovieComponent,
     EditMovieComponent,
-    NavigationBarComponent
+    NavigationBarComponent,
+    LoginComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -41,9 +52,17 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     FlexLayoutModule,
     HttpClientModule,
     FormsModule,
-    MDBBootstrapModule.forRoot()
+    ReactiveFormsModule,
+    MDBBootstrapModule.forRoot(),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        headerName: 'Authorization'}
+    })
   ],
-  providers: [],
+  providers: [AuthGuardService, JwtHelperService, {
+    provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

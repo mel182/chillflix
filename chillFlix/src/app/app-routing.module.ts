@@ -5,11 +5,15 @@ import {MovieDetailComponent} from './movie-detail/movie-detail.component';
 import {AddMovieComponent} from './add-movie/add-movie.component';
 import {EditMovieComponent} from './edit-movie/edit-movie.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component'
+import { AuthGuardService as AuthGuard } from './auth/auth-guard/auth-guard.service';
+import { LoginComponentComponent } from './login-component/login-component.component';
 
 const routes: Routes = [
   {path: '', component: MovieListContentComponent},
-  {path: 'add', component: AddMovieComponent},
-  {path: 'edit', component: EditMovieComponent}
+  {path: 'add', component: AddMovieComponent, canActivate: [AuthGuard]},
+  {path: 'edit', component: EditMovieComponent},
+  {path: 'login', component: LoginComponentComponent},
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

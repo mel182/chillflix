@@ -3,11 +3,21 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~font-awesome/css/font-awesome.css";
 
+$deep_koamaru: #909BF7;
+$jordy_blue: #232C63;
+$eerie_black: #1A1C1E;
+
+//#F2F2F2
+
 body {
     margin: 0;
-    background: #F2F2F2;
+    background-color: #F2F2F2;
     font-family: 'Montserrat', sans-serif;
     height: 100vh;
+}
+
+html body {
+    background-color: #F2F2F2;
 }
 
 // a {

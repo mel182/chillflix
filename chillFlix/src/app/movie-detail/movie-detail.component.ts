@@ -8,9 +8,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MovieDetailComponent implements OnInit {
 
-  id:Number;
+  id: Number;
 
-  constructor(private activateRoute:ActivatedRoute) { }
+  constructor(private activateRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.id = +this.activateRoute.snapshot.params['movie_id'];

@@ -1,33 +1,67 @@
-<h2>Movie list</h2>
+<!-- <h2>Movie list</h2>
 
 <select [(ngModel)]="title">
     <option value="volvo">Volvo</option>
     <option value="saab">Saab</option>
     <option value="opel">Opel</option>
     <option value="audi">Audi</option>
-  </select>
+  </select> -->
 
 
 
-<ul>
+<!-- <ul>
   <li *ngFor="let movie of movies$">
     <ul>
       <li>{{ movie.id }}</li>
       <li>{{ movie.title }}</li>
       <li>{{ movie.description }}</li>
-      <li>{{ movie.movie_id }}</li>
+      <li>{{ movie.movie_id }}</li> -->
       <!-- CALL A INPUT VALUE ON ANOTHER COMPONENT -->
       <!-- <app-movie-list-content> [movie.id]="testValue" </app-movie-list-content> -->
       <!-- <p>Server response: {{ testValue }}</p> -->
-    </ul>
+    <!-- </ul>
   </li>
-</ul>
+</ul> -->
 
-<input [(ngModel)]="title" type="text" placeholder="Enter movie title">
+<!-- <input [(ngModel)]="title" type="text" placeholder="Enter movie title">
 <input [(ngModel)]="description" type="text" placeholder="Enter movie description">
 <input [(ngModel)]="movie_id" type="text" placeholder="Enter movie youtube id">
 <button (click)="addMovie()">Add Movie</button>
-<p>Post Response: {{ httpResponse }}</p>
+<p>Post Response: {{ httpResponse }}</p> -->
+ 
+<!-- <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <h1 class="cover-heading">Cover your page.</h1>
+    <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+    <p class="lead ">
+      <a href="#" class="btn btn-lg btn-secondary button_style">Learn more</a>
+    </p>
+
+</div> -->
+
+<div class="album py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+           <iframe width="320" height="215" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
+            
+            <div class="card-body">
+              <p class="card-text">This is the video description.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
 
 
 

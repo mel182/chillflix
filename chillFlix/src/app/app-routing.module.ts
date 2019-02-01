@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {MovieListContentComponent} from './movie-list-content/movie-list-content.component';
-import {MovieDetailComponent} from './movie-detail/movie-detail.component';
 import {AddMovieComponent} from './add-movie/add-movie.component';
 import {EditMovieComponent} from './edit-movie/edit-movie.component';
-import { NavigationBarComponent } from './navigation-bar/navigation-bar.component'
 import { AuthGuardService as AuthGuard } from './auth/auth-guard/auth-guard.service';
 import { LoginComponentComponent } from './login-component/login-component.component';
 

@@ -23,12 +23,46 @@ describe('AddMovieComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  afterEach(() => {
+    component.indicator = '';
+  });
+
+  afterAll(() => {
+    component = null;
+  });
+
+  it('Create component instance', () => {
     expect(component).toBeTruthy();
   });
 
-  it('calculate should return 0 if value is negative', () => {
-    const result = component.calculate(-1);
-    expect(result).toBe(-1);
+  it('Set movie genre', () => {
+    // tslint:disable-next-line:comment-format
+    //Arrange (component is already created!)
+    const genreTestValue = 'Action';
+    // Act
+    component.setGenre(genreTestValue);
+    // Assert
+    expect(component.genre).toBe(genreTestValue);
+  });
+
+  it('Add movie with invalid youtube URL', () => {
+    // tslint:disable-next-line:comment-format
+    //Arrange (component is already created!)
+    const data = { 'movie_url' : '' };
+    // Act
+    component.addMovie(data);
+    // Assert
+    expect(component.indicator).toContain('Please provide a valid YouTube URL');
+  });
+
+  it('Add movie with invalid/empty genre', () => {
+    // tslint:disable-next-line:comment-format
+    //Arrange (component is already created!)
+    const data = { 'movie_url' : 'https://www.youtube.com/watch?v=yG4FH60fhUE&t=52s',
+    'movie_genre' : '' };
+    // Act
+    component.addMovie(data);
+    // Assert
+    expect(component.indicator).toContain('Please select movie genre');
   });
 });

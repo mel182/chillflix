@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient } from '@angular/common/http';
+import { MovieNGRXModel } from './ngrxModel/movie.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class MovieDataServiceService {
   constructor(private http: HttpClient) { }
 
   getMovies() {
-    return this.http.get('http://localhost:8080/api/movie/all');
+    return this.http.get<MovieNGRXModel[]>('http://localhost:8080/api/movie/all');
   }
 
   getMovie(id) {

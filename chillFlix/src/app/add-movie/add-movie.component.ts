@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieDataServiceService } from '../movie-data-service.service';
 import { FormBuilder, FormGroup, Validator, Validators } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
+import { MovieNGRXModel } from '../ngrxModel/movie.model';
+import { AppState } from '../../app/app.state';
+import * as MovieNGRXActions from '../ngrxActions/movie.actions';
 
 @Component({
   selector: 'app-add-movie',
@@ -17,8 +22,11 @@ export class AddMovieComponent implements OnInit {
   public indicator = '';
   movies$: Object;
   movie_genre_list$: Object;
+  // ngrxMovie: Observable<MovieNGRXModel[]>;
 
-  constructor(private formBuilder: FormBuilder, private movie_data: MovieDataServiceService) {
+  constructor(private formBuilder: FormBuilder, private movie_data: MovieDataServiceService, private store: Store<AppState>) {
+    // this.ngrxMovie = store.select('movie_reducer');
+
     this.movieForm = formBuilder.group({
       'movie_title': [null, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(150)])],
       'movie_description': [null, Validators.required],
@@ -40,10 +48,19 @@ export class AddMovieComponent implements OnInit {
 
     if (!data.movie_url.startsWith('https://www.youtube.com')) {
       this.indicator = 'Please provide a valid YouTube URL';
-    } else if (this.genre === '') {
+    } else if (data.movie_genre === '') {
       this.indicator = 'Please select movie genre';
     } else {
-      this.movie_data.addMovie(data.movie_title, data.movie_description, data.movie_url, this.genre).subscribe((res) => {
+      this.store.dispatch(new MovieNGRXActions.AddMovie({
+      title: data.movie_title,
+      description: data.movie_description,
+      genre: data.movie_genre,
+      url: data.movie_url
+      }));
+      alert('Movie added to store');
+
+      this.movie_data.addMovie(data.movie_title, data.movie_description, data.movie_url, this.genre)
+      .subscribe((res) => {
 
         this.indicator = 'Movie added to database';
       }, () => {
@@ -75,15 +92,6 @@ export class AddMovieComponent implements OnInit {
   //     });
   //   }
   // }
-
-
-  calculate(value) {
-    if (value === 0) {
-      return -1;
-    } else {
-      return value++;
-    }
-  }
 
   setGenre(selected_genre) {
     this.genre = selected_genre;

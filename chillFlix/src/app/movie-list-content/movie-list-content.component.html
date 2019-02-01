@@ -60,6 +60,19 @@
     </div>
   </div>
 
+  <div>
+
+    <h3>Movie states stored</h3>
+    <ul>
+      <li (click)="removeMovie(i)" *ngFor='let movie of ngrxMovie$ | async; let i = index'>
+        <a target="_blank">{{ movie.title }}</a>
+      </li>
+    </ul>
+
+    <!-- {{ (ngrxMovie$ | async) }} -->
+
+  </div>
+
 
 
 

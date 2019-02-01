@@ -20,6 +20,11 @@ import { LoginComponentComponent } from './login-component/login-component.compo
 import { AuthGuardService } from './auth/auth-guard/auth-guard.service';
 import { JwtHelperService, JwtModule} from '@auth0/angular-jwt';
 import { JwtInterceptorService } from './auth/interceptor/jwt-interceptor.service';
+import { MovieNGRXModel } from './ngrxModel/movie.model';
+import {MovieReducer } from './ngrxReducer/ngrxMovie.reducer';
+import { StoreModule, ActionReducerMap } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { MovieEffects } from './ngrxEffects/movie.effects';
 
 export function tokenGetter() {
   return '1425sd251x2zx12';
@@ -58,7 +63,11 @@ export function tokenGetter() {
       config: {
         tokenGetter: tokenGetter,
         headerName: 'Authorization'}
-    })
+    }),
+    StoreModule.forRoot({
+      video: MovieReducer
+      }),
+    EffectsModule.forRoot([MovieEffects])
   ],
   providers: [AuthGuardService, JwtHelperService, {
     provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true

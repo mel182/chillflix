@@ -1,7 +1,12 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { MovieDataServiceService } from '../movie-data-service.service';
-import { Observable } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { Store, select } from '@ngrx/store';
+import { MovieNGRXModel } from '../ngrxModel/movie.model';
+import { AppState } from '../../app/app.state';
+import * as MovieNGRXActions from '../ngrxActions/movie.actions';
+import { Action } from 'rxjs/internal/scheduler/Action';
 
 @Component({
   selector: 'app-movie-list-content',
@@ -15,6 +20,7 @@ export class MovieListContentComponent implements OnInit {
   public title = '';
   public description = '';
   public movie_id = '';
+  ngrxMovie$: Observable<MovieNGRXModel>;
   // Rating
   // thumbnail
 
@@ -22,39 +28,17 @@ export class MovieListContentComponent implements OnInit {
 
   @Input() testValue: String;
 
-  constructor(private movie_data: MovieDataServiceService) { }
+  constructor(private store: Store<AppState>) {
+    this.ngrxMovie$ = store.select('video');
+    // this.ngrxMovie$ = store.pipe(select(s => s.appState));
+    // this.ngrxMovie$.subscribe(m => console.log(m));
+   }
 
   ngOnInit() {
-    this.fecthAllMovies();
+    this.store.dispatch(new MovieNGRXActions.GetMovie());
   }
 
-  fecthAllMovies() {
-    this.movie_data.getMovies().subscribe(
-      data => this.movies$ = data
-    );
-  }
-
-  // addMovie() {
-  //   // this.movie_data.addMovie(this,this.title,this.description,this.movie_id,'',function(error,response,context){
-
-  //   //     if(error === null){
-  //   //       context.httpResponse = response.message;
-  //   //       context.refeshList();
-  //   //     }else{
-  //   //       context.httpResponse = response.message;
-  //   //     }
-  //   //   })
-
-  //   this.movie_data.addMovie(this.movie_title, this.movie_description, this.movie_url, '').subscribe((res) => {
-
-  //     this.indicator = 'Movie added to database';
-  //   }, error => {
-  //     this.indicator = 'Failed adding movie to database';
-  //   });
-  // }
-
-  refeshList() {
-    this.fecthAllMovies();
-      this.httpResponse = 'Movie added';
+  removeMovie(index) {
+    this.store.dispatch(new MovieNGRXActions.RemoveMovie(index));
   }
 }
